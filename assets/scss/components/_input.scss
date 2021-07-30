@@ -1,0 +1,43 @@
+.form-group {
+  label {
+    color: $black;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+}
+
+.input-group {
+  .form-control {
+    border-radius: $gobi-border-radius;
+  }
+
+  .input-group {
+    &-prepend {
+      .input-group-text {
+        border-top-left-radius: $gobi-border-radius;
+        border-bottom-left-radius: $gobi-border-radius;
+        width: 3rem;
+        justify-content: center;
+      }
+    }
+
+    &-append {
+      .input-group-text {
+        border-top-right-radius: $gobi-border-radius;
+        border-bottom-right-radius: $gobi-border-radius;
+      }
+    }
+  }
+}
+
+.form-input-simplified-line {
+  outline: 0;
+  padding: 1.25rem 0 !important;
+  border: 0;
+  border-bottom: $gobi-border $primary;
+  border-radius: 0 !important;
+
+  &:focus {
+    box-shadow: 0;
+  }
+}

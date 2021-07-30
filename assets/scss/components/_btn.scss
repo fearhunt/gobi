@@ -1,0 +1,92 @@
+.btn {
+  padding: 0.25rem 1rem;
+  border-width: 0.2rem;
+  border-radius: $gobi-border-radius; 
+  box-shadow: $gobi-shadow;
+  font-weight: 600;
+  transition: $gobi-transition;
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($secondary, 0.4) !important;
+  }
+
+  &.btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+    color: $white;
+
+    &:active {
+      background-color: $primary !important;
+      border-color: $primary !important;
+    }
+
+    &:hover {
+      background-color: rgba($primary, 0.85);
+      border-color: rgba($primary, 0.85);
+    }
+
+    a {
+      color: $white;
+    }
+  }
+
+  &.btn-secondary {
+    background-color: $secondary;
+    border-color: $secondary;
+    color: $white;
+
+    &:active {
+      background-color: secondary !important;
+      border-color: $secondary !important;
+    }
+
+    &:hover {
+      background-color: rgba($secondary, 0.85);
+      border-color: rgba($secondary, 0.85);
+    }
+
+    a {
+      color: $white;
+    }
+  }
+
+  &.btn-round {
+    padding: 0.45rem;
+    border-radius: 100%;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  &.btn-slider {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99;
+    border: 0.25rem solid $primary;
+    background: $primary;
+    color: $white;
+    font-size: 1.5rem;
+
+    &.right {
+      right: 1.5rem;
+
+      @media (max-width: 768px) {
+        right: 1rem;
+      }
+    }
+  }
+
+  &.btn-modal-close {
+    padding: 0.25rem;
+    border: $gobi-border $primary;
+    border-radius: 100%;
+    width: 2.25rem;
+    height: 2.25rem;
+    color: $primary;
+    font-weight: bold;
+  }
+
+  .nav-link {
+    padding: 0.25rem;
+  }
+}

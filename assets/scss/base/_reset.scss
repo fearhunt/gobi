@@ -1,0 +1,66 @@
+body {
+  background: $white;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: $primary;
+  transition: $gobi-transition;
+
+  &:hover {
+    color: darken($primary, 5%);
+    text-decoration: none;
+  }
+}
+
+label {
+  margin-bottom: 0;
+}
+
+textarea {
+  &.form-control {
+    border-radius: $gobi-border-radius !important;
+  }
+}
+
+input {
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.2);
+  }
+
+  /* Firefox */
+  &[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  &.form-control {
+    border-radius: $gobi-border-radius;
+    margin: 0.25rem 0;
+    padding: 1.25rem 2rem;
+    
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-input-placeholder {
+      color: rgba(0, 0, 0, 0.35);
+    }
+
+    /* Firefox */
+    &::-moz-placeholder {
+      color: rgba(0, 0, 0, 0.35);
+    }
+  }
+}
+
+label {
+  cursor: pointer;
+}

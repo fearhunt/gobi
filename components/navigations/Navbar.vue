@@ -46,7 +46,6 @@
     mounted() {
       const navItem = document.querySelectorAll(".navbar-nav .nav-item");
       const authBtn = navItem[navItem.length - 1];
-        console.log(authBtn.querySelector("a"))  
       authBtn.querySelector("a").classList.remove("nav-link");
     }
   }

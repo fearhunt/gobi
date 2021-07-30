@@ -4,7 +4,7 @@
       <b-container>
         <b-row>
           <b-col sm="12" md="6" class="mt-auto mb-md-auto">
-
+            
           </b-col>
           <b-col sm="12" md="6" class="my-auto">
             <svg class="gobi-main" viewBox="0 0 547 447" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,6 +33,17 @@
         </b-row>
       </b-container>
     </section>
+
+    <section id="dev">
+      <b-container>
+        <b-row>
+          <b-col>
+            <button id="button">Start listening</button>
+            <div id="result"></div>
+          </b-col>
+        </b-row>
+      </b-container>
+    </section>
   </main>
 </template>
 
@@ -57,6 +68,68 @@
     beforeDestroy() {
       window.removeEventListener("scroll", this.setNavbarOnScroll);
     },
+
+    mounted() {
+      const button = document.getElementById("button");
+      const result = document.getElementById("result");
+      const main = document.getElementsByTagName("main")[0];
+
+      let listening = false;
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (typeof SpeechRecognition !== "undefined") {
+        const recognition = new SpeechRecognition();
+        
+        var counter = 0;
+        const start = () => {
+          main.classList.add("speaking");
+          recognition.start();
+          button.textContent = "Stop listening";
+        };
+
+        const stop = () => {
+          main.classList.remove("speaking");
+          recognition.stop();
+          button.textContent = "Start listening";
+          this.$store.dispatch("gobi/sendAudioRecord", {
+            pesan: document.querySelector("#result").innerText,
+            counter: counter
+          })
+          counter++;
+        };
+
+
+        const onResult = event => {
+          result.innerHTML = "";
+
+          for (const res of event.results) {
+            const text = document.createTextNode(res[0].transcript);
+            const p = document.createElement("p");
+            if (res.isFinal) {
+              p.classList.add("final");
+            }
+            p.appendChild(text);
+            result.appendChild(p);
+          }
+        };
+
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang="id-ID"
+        recognition.addEventListener("result", onResult);
+        button.addEventListener("click", event => {
+          listening ? stop() : start();
+          listening = !listening;
+
+        });
+        
+      } else {
+        button.remove();
+        const message = document.getElementById("message");
+        message.removeAttribute("hidden");
+        message.setAttribute("aria-hidden", "false");
+      }
+    }
   }
 </script>
 

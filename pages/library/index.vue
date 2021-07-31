@@ -21,8 +21,18 @@
               </p>
             </div>
           </b-col>
-          <b-col v-for="(book, index) in books" :key="index" sm="6" md="4" lg="3" class="mt-3">
-            test
+          <b-col v-for="(book, index) in books" :key="index" cols="6" md="4" lg="3" class="mt-3 mb-1 book-container">
+            <div class="book">
+              <div class="book-poster-container text-center mb-2" :class="changeBookPosterBackground(index + 1)">
+                <b-img :src="book.thumbnail" fluid></b-img>
+              </div>
+              <p class="text-center font-weight-bold mb-1">
+                {{ book.name }}
+              </p>
+              <p class="text-center book-desc">
+                {{ book.desc }}
+              </p>
+            </div>
           </b-col>
         </b-row>
       </b-container>
@@ -63,6 +73,18 @@
         });
 
         event.target.classList.add("active");
+      },
+
+      changeBookPosterBackground(index) {
+        if (index % 4 == 0) {
+          return "bg-tosca";
+        } else if (index % 3 == 0) {
+          return "bg-pink";
+        } else if (index % 2 == 0) {
+          return "bg-secondary";
+        } else if (index % 1 == 0) {
+          return "bg-yellow";
+        }
       }
     },
 
@@ -90,6 +112,33 @@
       font-weight: bold;
       border-bottom: $gobi-border $secondary;
       margin-bottom: -0.25rem;
+    }
+  }
+
+  .book {
+    .book-desc {
+      font-size: 0.75rem;
+    }
+
+    .book-poster-container {
+      background: white;
+      border-radius: $gobi-border-radius;
+      height: 8rem;
+      margin-top: 10rem;
+
+      .img-fluid {
+        margin-top: -10rem;
+        border-radius: $gobi-border-radius;
+        width: 80%;
+      }
+
+      @media (max-width: 768px) {
+        margin-top: 5rem;
+
+        .img-fluid {
+          margin-top: -5rem;
+        }
+      }
     }
   }
 </style>

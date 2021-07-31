@@ -22,6 +22,10 @@ section {
     }
   }
 
+  &-soft-purple {
+    background: $soft-purple !important;
+  }
+
   &-pink {
     background: $pink !important;
   }
@@ -40,6 +44,10 @@ section {
 
   &-light {
     background: $white !important;
+  }
+
+  &-disabled {
+    background: #B8B8B8 !important;
   }
 }
 

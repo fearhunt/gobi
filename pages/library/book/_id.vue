@@ -12,7 +12,7 @@
                 <b-img :src="bookDetail.thumbnail" fluid rounded class="book-poster d-block mx-auto"></b-img>
                 <b-button @click="isReadMode = !isReadMode" variant="secondary" class="my-4">Baca Sekarang!</b-button>
                 <div class="bg-light rounded py-4 px-3">
-                  <p class="text-description">
+                  <p class="text-description text-black">
                     {{ bookDetail.desc }}
                   </p>
                 </div>

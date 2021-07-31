@@ -15,7 +15,7 @@
                 </template>
               </b-input-group>
             </b-form>
-            <div id="filter-library">
+            <div id="filter-library" class="text-center">
               <p @click="filterBooks($event, category)" v-for="(category, index) in categories" :key="index" class="library-tabs d-inline-block m-2">
                 {{ category.name | capitalizeFirstLetterOfEachWord() }}
               </p>
@@ -31,7 +31,8 @@
                   {{ book.name }}
                 </p>
                 <p class="text-center text-white book-desc">
-                  {{ book.desc }}
+                  <!-- {{ book.desc }} -->
+                  telah dibaca 1{{ index }}{{ index }} anak
                 </p>
               </div>
             </nuxt-link>

@@ -8,7 +8,7 @@
             <p>Jumpa lagi Danny! Semangat lakukan tantangan hari ini ya!</p>
           </b-col>
           <template v-for="(challenge, index) in challenges">
-            <b-col v-if="challenge.status == 0" :key="index" cols="12" md="6" lg="4" class="mt-3 mb-1 challenge-container">
+            <b-col v-if="challenge.status != 1" :key="index" cols="12" md="6" lg="4" class="mt-3 mb-1 challenge-container">
               <b-card no-body :bg-variant="changeChallengeBackground(index + 1)">
                 <b-row no-gutters>
                   <b-col cols="6" class="my-auto">
@@ -19,6 +19,9 @@
                       <h6 class="pl-4">
                         {{ challenge.name }}
                       </h6>
+                      <b-button v-if="index < 3" :to="`/challenge/daily/${challenge.id}`" variant="secondary" class="py-1 px-3">
+                        Lakukan
+                      </b-button>
                     </b-card-body>
                   </b-col>
                   <b-col cols="6" class="img-display-card" :style="{ backgroundImage: `url(${challenge.image})` }"></b-col>
@@ -46,8 +49,8 @@
 
     methods: {
       changeChallengeBackground(index) {
-        if (index % 4 == 0) {
-          return "pink";
+        if (index >= 4) {
+          return "disabled";
         } else if (index % 3 == 0) {
           return "primary";
         } else if (index % 2 == 0) {

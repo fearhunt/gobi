@@ -17,6 +17,7 @@ export const actions = {
   async getAllChallenges({ dispatch, commit }) {
     await this.$axios.get("/api/challenges/")
       .then((res) => {
+        res.data.sort((a, b) => (a.status != 1) ? 1 : -1)
         commit("SET_CHALLENGES", res.data);
       }).catch((err) => {
         dispatch("alert/displayError", { ...err, message: "Terdapat error saat mengambil data tantangan. Mohon coba beberapa saat lagi" }, { root: true });

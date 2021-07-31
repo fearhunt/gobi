@@ -1,6 +1,6 @@
 <template>
   <b-navbar variant="primary">
-    <b-navbar-brand to="/">
+    <b-navbar-brand to="/user-journey">
       <!-- <h2 class="navbar-brand-title mb-0">Gobi</h2> -->
       <b-row>
         <div class="text-center ml-3 mr-2">
@@ -15,7 +15,6 @@
           </b-row>
         </div>
       </b-row>
-      
     </b-navbar-brand>
   </b-navbar>
 </template>

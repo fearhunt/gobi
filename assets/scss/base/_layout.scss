@@ -1,11 +1,6 @@
 section {
   margin-top: 2rem;
   margin-bottom: 2rem;
-  padding: 1.5rem;
-
-  @media (max-width: 768px) {
-    padding: 1rem 0.5rem;
-  }
 }
 
 .bg {
@@ -34,4 +29,30 @@ section {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.circle-asset {
+  width: 60rem;
+  height: 60rem;
+  position: absolute;
+  bottom: -50%;
+  left: 1rem;
+  background-color: $dark-purple;
+  border-radius: 100%;
+  z-index: -1;
+
+  @media (max-width: 768px) {
+    width: 30rem;
+    height: 30rem;
+    bottom: -30%;
+  }
+}
+
+.gobi-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7rem;
+  width: 100%;
+  background-color: #F09E70;
 }

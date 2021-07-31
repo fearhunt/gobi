@@ -51,15 +51,14 @@
   }
 
   &.btn-recorder {
-    background-color: $white;
-    padding: 0.45rem;
-    border-radius: 100%;
-    font-size: 1.5rem;
-    width: 3.5rem;
-    height: 3.5rem;
+    background-color: white;
+    color: $primary;
+    font-size: 2rem;
+    width: 4rem !important;
+    height: 4rem !important;
 
     &:hover {
-      transform: scale(1.25);
+      transform: scale(1.15);
     }
 
     &.active {
@@ -82,8 +81,8 @@
   &.btn-round {
     padding: 0.45rem;
     border-radius: 100%;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3rem;
+    height: 3rem;
   }
 
   &.btn-slider {

@@ -41,6 +41,10 @@ body {
   &-white {
     color: $white !important;
   }
+
+  &-default {
+    color: #6C6B6F !important;
+  }
   
   &-ellipsis {
     text-overflow: ellipsis;

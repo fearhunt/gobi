@@ -10,9 +10,9 @@
               </div>
               <div v-else>
                 <b-img :src="bookDetail.thumbnail" fluid rounded class="book-poster d-block mx-auto"></b-img>
-                <b-button @click="isReadMode = !isReadMode" variant="secondary" class="my-4">Baca Sekarang!</b-button>
+                <b-button @click="toggleReadMode" variant="secondary" class="my-4">Baca Sekarang!</b-button>
                 <div class="bg-light rounded py-4 px-3">
-                  <p class="text-description">
+                  <p class="text-description text-default">
                     {{ bookDetail.desc }}
                   </p>
                 </div>
@@ -49,7 +49,23 @@
       return {
         isFetched: false,
         isReadMode: false,
-        bookId: this.$route.params.id
+        bookId: this.$route.params.id,
+        readingTime: 0
+      }
+    },
+
+    methods: {
+      countdown() {
+        if (this.readingTime < 5000) {
+          this.readingTime += 500;
+          console.log(this.readingTime)
+          setTimeout(this.countdown(), 500);
+        }
+      },
+
+      toggleReadMode() {
+        this.isReadMode = !this.isReadMode;
+        this.countdown();
       }
     },
 

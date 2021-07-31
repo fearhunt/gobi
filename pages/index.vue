@@ -42,6 +42,9 @@
               <b-button to="/challenge" size="sm" variant="round" class="bg-white mx-2">
                 <b-img :src="require('~/assets/img/medal.png')" fluid></b-img>
               </b-button>
+              <b-button to="/user-journey" size="sm" variant="round" class="bg-white mx-2">
+                Tes
+              </b-button>
             </div>
             <div class="circle-asset"></div>
           </b-col>

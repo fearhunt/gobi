@@ -79,7 +79,7 @@
 
 <style lang="scss" scoped>
   .flipbook {
-    width: 90vw;
-    height: 90vh;
+    width: 100%;
+    height: 100vh;
   }
 </style>

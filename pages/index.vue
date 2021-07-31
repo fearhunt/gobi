@@ -3,13 +3,13 @@
     <section id="jumbotron">
       <b-container fluid>
         <b-row>
-          <b-col sm="12" md="6" class="mt-auto mb-md-auto px-4 px-md-5">
+          <b-col cols="12" md="6" class="mt-auto mb-md-auto px-4 px-md-5">
             <h1 class="text-gobi text-white">
               {{ gobiResponse }}
             </h1>
             <div id="record-result"></div>
           </b-col>
-          <b-col sm="12" md="6" class="mt-auto px-0" style="overflow: hidden">
+          <b-col cols="12" md="6" class="mt-auto px-0" style="overflow: hidden">
             <svg class="gobi-main" viewBox="0 0 547 447" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path class="left-hand" d="M60.7447 52.6837C19.6682 172.26 93.7841 219.592 135.35 239.522L135.35 303.047C119.457 303.047 60.7447 282.991 21.6558 209.627C-36.6139 100.264 38.7394 -7.10473 60.7447 0.368817C78.3489 6.34766 80.3365 19.0527 60.7447 52.6837Z" fill="#B6E8FF"/>
               <path class="right-hand" d="M528.276 339.93C515.9 288.59 451.444 265.714 420.518 260.881L436.159 325.764C440.396 322.792 454.928 322.504 479.161 345.125C509.454 373.401 393.31 402.875 385.37 413.449C377.43 424.024 386.919 473.763 461.771 432.015C530.389 393.745 535.051 368.035 528.276 339.93Z" fill="#B6E8FF"/>
@@ -62,7 +62,7 @@
         }
       }
     },
-    
+
     computed: {
       ...mapState({
         recorderCounter: state => state.gobi.recorderCounter,

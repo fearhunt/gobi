@@ -22,17 +22,19 @@
             </div>
           </b-col>
           <b-col v-for="(book, index) in books" :key="index" cols="6" md="4" lg="3" class="mt-3 mb-1 book-container">
-            <div class="book">
-              <div class="book-poster-container text-center mb-2" :class="changeBookPosterBackground(index + 1)">
-                <b-img :src="book.thumbnail" fluid></b-img>
+            <nuxt-link :to="`/library/book/${book.id}`">
+              <div class="book">
+                <div class="book-poster-container text-center mb-2" :class="changeBookPosterBackground(index + 1)">
+                  <b-img :src="book.thumbnail" fluid></b-img>
+                </div>
+                <p class="text-center text-white font-weight-bold mb-1">
+                  {{ book.name }}
+                </p>
+                <p class="text-center text-white book-desc">
+                  {{ book.desc }}
+                </p>
               </div>
-              <p class="text-center font-weight-bold mb-1">
-                {{ book.name }}
-              </p>
-              <p class="text-center book-desc">
-                {{ book.desc }}
-              </p>
-            </div>
+            </nuxt-link>
           </b-col>
         </b-row>
       </b-container>

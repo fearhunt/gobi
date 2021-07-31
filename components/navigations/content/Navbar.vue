@@ -22,6 +22,8 @@
       pageTitle() {
         if (this.$route.path == "/library") {
           return "Perpustakaan";
+        } else if ((this.$route.path).includes("library/book")) {
+          return this.$store.state.library.bookDetail?.name;
         }
       },
 

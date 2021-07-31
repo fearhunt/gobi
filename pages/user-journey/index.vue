@@ -4,19 +4,20 @@
       <b-container>
         <b-row>
           <b-col cols="12">
-            <h2 class="text-primary font-weight-bold">Tantangan Harian</h2>
-            <p>Jumpa lagi Danny! Semangat lakukan tantangan hari ini ya!</p>
+            <h2 class="text-primary font-weight-bold">Catatan Perjalanan</h2>
+            <p>Berikut ini catatan dari perjalanan penuh tantanganmu. Hebat kamu sudah sejauh ini!</p>
           </b-col>
           <template v-for="(challenge, index) in challenges">
-            <b-col v-if="challenge.status == 0" :key="index" cols="12" md="6" lg="4" class="mt-3 mb-1 challenge-container">
+            <b-col v-if="challenge.status == 1" :key="index" cols="12" md="6" lg="4" class="mt-3 mb-1 challenge-container">
               <b-card no-body :bg-variant="changeChallengeBackground(index + 1)">
                 <b-row no-gutters>
                   <b-col cols="6" class="my-auto">
                     <b-card-body class="text-white text-right">
+                      <i class="fa fa-check challenge-completed" aria-hidden="true"></i>
                       <h5 class="font-weight-bold">
                         Day {{ index + 1 }}
                       </h5>
-                      <h6 class="pl-4">
+                      <h6 class="pl-4 mb-0">
                         {{ challenge.name }}
                       </h6>
                     </b-card-body>

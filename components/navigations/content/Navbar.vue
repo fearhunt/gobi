@@ -1,5 +1,5 @@
 <template>
-  <b-navbar :variant="isChallengePage ? 'transparent' : 'primary'" class="justify-content-between">
+  <b-navbar :variant="isChallengeOrJourneyPage ? 'transparent' : 'primary'" class="justify-content-between">
     <b-button :to="navLink" variant="round">
       <i class="fa fa-chevron-left" aria-hidden="true"></i>
     </b-button>
@@ -13,8 +13,8 @@
 <script>
   export default {
     computed: {
-      isChallengePage() {
-        if ((this.$route.path).includes("challenge")) {
+      isChallengeOrJourneyPage() {
+        if ((this.$route.path).includes("challenge") || (this.$route.path).includes("user-journey")) {
           return true;
         } else {
           return false;

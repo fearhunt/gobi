@@ -1,4 +1,16 @@
-# gobi
+# Gobi App
+Demo Link [Frontend](https://gobi-app.netlify.app/)
+
+Demo Link [Backend](https://gobi-app.herokuapp.com/)
+
+## Contributor
+### Team Bibimbap
+- Firhan Mahdi Ramadhani
+- Nico Renaldo
+- Kansha Eriella Savanti
+- Theodora Valerie
+
+Part of HackBiz 2021 180DCUGM Competition
 
 ## Build Setup
 

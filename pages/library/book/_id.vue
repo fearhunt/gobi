@@ -6,7 +6,7 @@
           <b-row>
             <b-col cols="12" class="text-center">
               <div v-if="isReadMode">
-                <flipbook class="flipbook" :pages="cek"></flipbook>
+                <flipbook class="flipbook" :pages="bookDetail.images"></flipbook>
               </div>
               <div v-else>
                 <b-img :src="bookDetail.thumbnail" fluid rounded class="book-poster d-block mx-auto"></b-img>
@@ -41,21 +41,7 @@
       return {
         isFetched: false,
         isReadMode: false,
-        bookId: this.$route.params.id,
-        cek: [
-          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
-          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
-          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
-          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
-          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
-          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
-          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
-          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
-          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
-          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
-          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
-          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
-        ]
+        bookId: this.$route.params.id
       }
     },
 

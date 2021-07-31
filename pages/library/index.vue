@@ -25,7 +25,7 @@
             <nuxt-link :to="`/library/book/${book.id}`">
               <div class="book">
                 <div class="book-poster-container text-center mb-2" :class="changeBookPosterBackground(index + 1)">
-                  <b-img :src="book.thumbnail" fluid></b-img>
+                  <b-img :src="book.thumbnail" fluid rounded class="book-poster"></b-img>
                 </div>
                 <p class="text-center text-white font-weight-bold mb-1">
                   {{ book.name }}
@@ -128,10 +128,8 @@
       height: 8rem;
       margin-top: 10rem;
 
-      .img-fluid {
+      .book-poster {
         margin-top: -10rem;
-        border-radius: $gobi-border-radius;
-        width: 80%;
       }
 
       @media (max-width: 768px) {

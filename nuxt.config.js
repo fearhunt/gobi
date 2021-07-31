@@ -34,6 +34,7 @@ export default {
   plugins: [
     "~/plugins/capitalize.js",
     "~/plugins/currency.js",
+    "~/plugins/flipbook.client.js",
   ],
 
   // Loader components: https://nuxtjs.org/docs/2.x/features/loading/

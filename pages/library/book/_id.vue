@@ -1,9 +1,26 @@
 <template>
   <main>
     <template v-if="isFetched">
-      <template v-if="bookDetail">
-        
-      </template>
+      <section v-if="bookDetail">
+        <b-container >
+          <b-row>
+            <b-col cols="12" class="text-center">
+              <div v-if="isReadMode">
+                <flipbook class="flipbook" :pages="bookDetail.images"></flipbook>
+              </div>
+              <div v-else>
+                <b-img :src="bookDetail.thumbnail" fluid rounded class="book-poster d-block mx-auto"></b-img>
+                <b-button @click="isReadMode = !isReadMode" variant="secondary" class="my-5">Baca Sekarang!</b-button>
+                <div class="bg-light rounded py-4 px-3">
+                  <p class="text-description">
+                    {{ bookDetail.desc }}
+                  </p>
+                </div>
+              </div>
+            </b-col>
+          </b-row>
+        </b-container>
+      </section>
     </template>
   </main>
 </template>
@@ -23,6 +40,7 @@
     data() {
       return {
         isFetched: false,
+        isReadMode: false,
         bookId: this.$route.params.id
       }
     },

@@ -6,11 +6,11 @@
           <b-row>
             <b-col cols="12" class="text-center">
               <div v-if="isReadMode">
-                <flipbook class="flipbook" :pages="bookDetail.images"></flipbook>
+                <flipbook class="flipbook" :pages="cek"></flipbook>
               </div>
               <div v-else>
                 <b-img :src="bookDetail.thumbnail" fluid rounded class="book-poster d-block mx-auto"></b-img>
-                <b-button @click="isReadMode = !isReadMode" variant="secondary" class="my-5">Baca Sekarang!</b-button>
+                <b-button @click="isReadMode = !isReadMode" variant="secondary" class="my-4">Baca Sekarang!</b-button>
                 <div class="bg-light rounded py-4 px-3">
                   <p class="text-description">
                     {{ bookDetail.desc }}
@@ -41,7 +41,21 @@
       return {
         isFetched: false,
         isReadMode: false,
-        bookId: this.$route.params.id
+        bookId: this.$route.params.id,
+        cek: [
+          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
+          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
+          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
+          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
+          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
+          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
+          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
+          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
+          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
+          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
+          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
+          "https://gobi-app.herokuapp.com/media/thumbnail/The_mystery_of_cyber_friend.jpg",
+        ]
       }
     },
 
@@ -64,5 +78,8 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .flipbook {
+    width: 90vw;
+    height: 90vh;
+  }
 </style>

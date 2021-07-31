@@ -8,6 +8,25 @@
               {{ gobiResponse }}
             </h1>
             <div id="record-result"></div>
+            <b-row no-gutters>
+              <template v-if="recorderCounter == 2">
+                <b-col v-for="(book, index) in recommendationBooks" :key="index" cols="6" class="mt-3 mb-1 px-3 book-container">
+                  <nuxt-link :to="`/library/book/${book.id}`">
+                    <div class="book">
+                      <div class="book-poster-container text-center mb-2" :class="changeBookPosterBackground(index + 1)">
+                        <b-img :src="book.thumbnail" fluid rounded class="book-poster"></b-img>
+                      </div>
+                      <p class="text-center text-white font-weight-bold mb-1">
+                        {{ book.name }}
+                      </p>
+                    </div>
+                  </nuxt-link>
+                </b-col>
+              </template>
+              <template v-else-if="recorderCounter == 3">
+                <b-button to="/challenge" variant="secondary">Lihat Tantangan</b-button>
+              </template>
+            </b-row>
           </b-col>
           <b-col cols="12" md="6" class="mt-auto px-0" style="overflow: hidden">
             <svg class="gobi-main" viewBox="0 0 547 447" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,8 +85,13 @@
     computed: {
       ...mapState({
         recorderCounter: state => state.gobi.recorderCounter,
-        gobiResponse: state => state.gobi.gobiResponse
-      })
+        gobiResponse: state => state.gobi.gobiResponse,
+        books: state => state.library.books
+      }),
+
+      recommendationBooks() {
+        return [this.books[0], this.books[1]];
+      }
     },
 
     data() {
@@ -178,10 +202,24 @@
         utterThis.rate = 1;
 
         window.speechSynthesis.speak(utterThis);
+      },
+
+      changeBookPosterBackground(index) {
+        if (index % 4 == 0) {
+          return "bg-tosca";
+        } else if (index % 3 == 0) {
+          return "bg-pink";
+        } else if (index % 2 == 0) {
+          return "bg-secondary";
+        } else if (index % 1 == 0) {
+          return "bg-yellow";
+        }
       }
     },
 
-    mounted() {
+    async mounted() {
+      await this.$store.dispatch("library/getAllBooks");
+
       this.recognizeSpeech();
       this.populateVoiceList();
       
@@ -194,6 +232,8 @@
 
 <style lang="scss" scoped>
   @import "~/assets/scss/base/_colours.scss";
+  @import "~/assets/scss/base/_variables.scss";
+
 
   #jumbotron {
     margin: 0;
@@ -206,6 +246,35 @@
     
     .container, .container-fluid, .row {
       height: 100%;
+    }
+  }
+
+  .book {
+    .book-desc {
+      font-size: 0.75rem;
+    }
+
+    .book-poster-container {
+      background: white;
+      border-radius: $gobi-border-radius;
+      height: 17rem;
+      margin-top: 11rem;
+
+      .book-poster {
+        margin-top: -11rem;
+      }
+
+      @media (max-width: 1440px) {
+        height: 6rem;
+      }
+
+      @media (max-width: 768px) {
+        margin-top: 5rem;
+
+        .img-fluid {
+          margin-top: -5rem;
+        }
+      }
     }
   }
 </style>

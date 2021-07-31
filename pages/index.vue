@@ -78,7 +78,7 @@
 
         if (typeof SpeechRecognition !== "undefined") {
           const recognition = new SpeechRecognition();
-          recognition.continuous = true;
+          recognition.continuous = false;
           recognition.interimResults = true;
           recognition.lang = "id-ID";
           
@@ -90,13 +90,12 @@
           const stop = () => {
             btnRecorder.classList.remove("active");
             recognition.stop();
-
-            this.$store.dispatch("gobi/sendAudioRecord", {
-              pesan: document.querySelector("#record-result").innerText
-            }).then(() => {
-              this.speakResponse();
-            });
           };
+
+          btnRecorder.addEventListener("click", event => {
+            listening ? stop() : start();
+            listening = !listening;
+          });
 
           const onResult = event => {
             recordResult.innerHTML = "";
@@ -116,10 +115,16 @@
           };
 
           recognition.addEventListener("result", onResult);
-          btnRecorder.addEventListener("click", event => {
+          recognition.onsoundend = () => {
             listening ? stop() : start();
             listening = !listening;
-          });
+            
+            this.$store.dispatch("gobi/sendAudioRecord", {
+              pesan: document.querySelector("#record-result").innerText
+            }).then(() => {
+              this.speakResponse();
+            });
+          }
         } else {
           btnRecorder.remove();
 

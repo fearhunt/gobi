@@ -48,6 +48,14 @@
   export default {
     layout: "content",
 
+    head() {
+      return {
+        bodyAttrs: {
+          class: "bg-primary"
+        }
+      }
+    },
+
     computed: {
       ...mapState({
         categories: state => state.library.categories,

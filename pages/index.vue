@@ -39,7 +39,7 @@
               <b-button size="sm" variant="recorder" class="btn-round mx-2">
                 <i class="fa fa-microphone" aria-hidden="true"></i>
               </b-button>
-              <b-button size="sm" variant="round" class="bg-white mx-2">
+              <b-button to="/challenge" size="sm" variant="round" class="bg-white mx-2">
                 <b-img :src="require('~/assets/img/medal.png')" fluid></b-img>
               </b-button>
             </div>
@@ -55,6 +55,14 @@
   import { mapState } from "vuex";
 
   export default {
+    head() {
+      return {
+        bodyAttrs: {
+          class: "bg-primary"
+        }
+      }
+    },
+    
     computed: {
       ...mapState({
         recorderCounter: state => state.gobi.recorderCounter,

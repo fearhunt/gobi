@@ -1,6 +1,6 @@
 <template>
-  <b-navbar variant="primary" class="justify-content-between">
-    <b-button :to="navLink" variant="round" :class="challengePageClass">
+  <b-navbar :variant="isChallengePage ? 'transparent' : 'primary'" class="justify-content-between">
+    <b-button :to="navLink" variant="round">
       <i class="fa fa-chevron-left" aria-hidden="true"></i>
     </b-button>
     <h5 class="text-white font-weight-bold mb-0">
@@ -13,9 +13,11 @@
 <script>
   export default {
     computed: {
-      challengePageClass() {
+      isChallengePage() {
         if ((this.$route.path).includes("challenge")) {
-          return "light";
+          return true;
+        } else {
+          return false;
         }
       },
 
@@ -29,7 +31,7 @@
 
       navLink() {
         if ((this.$route.path == "/library") || (this.$route.path == "/challenge")) {
-          return "/"
+          return "/";
         } else {
           const routeHistory = this.$nuxt.context.from;
 
@@ -57,6 +59,13 @@
       font-size: 0.8rem;
 
       &.light {
+        background-color: $primary;
+        color: white;
+      }
+    }
+
+    &.bg-transparent {
+      .btn-round {
         background-color: $primary;
         color: white;
       }

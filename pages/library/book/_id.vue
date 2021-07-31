@@ -31,6 +31,14 @@
   export default {
     layout: "content",
 
+    head() {
+      return {
+        bodyAttrs: {
+          class: "bg-primary"
+        }
+      }
+    },
+
     computed: {
       ...mapState({
         bookDetail: state => state.library.bookDetail

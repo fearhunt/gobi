@@ -33,7 +33,7 @@
               </g>
             </svg>
             <div class="gobi-table">
-              <b-button size="sm" variant="round" class="bg-white mx-2">
+              <b-button to="/library" size="sm" variant="round" class="bg-white mx-2">
                 <b-img :src="require('~/assets/img/book.png')" fluid></b-img>
               </b-button>
               <b-button size="sm" variant="recorder" class="btn-round mx-2">
@@ -153,11 +153,11 @@
 
         let utterThis = new SpeechSynthesisUtterance(this.gobiResponse);
         utterThis.onend = (event) => {
-          console.log("SpeechSynthesisUtterance.onend");
+          console.log("Speak ended");
         }
 
         utterThis.onerror = (event) => {
-          console.error("SpeechSynthesisUtterance.onerror")
+          console.error("Speak error")
         }
 
         utterThis.voice = this.voices[0];

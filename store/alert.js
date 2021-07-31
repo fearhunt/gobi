@@ -3,16 +3,16 @@ import swal from 'sweetalert';
 export const actions = {
   displaySuccess(context, res) {
     console.log(res);
-    swal("Notification", res.message, "success");
+    swal("Notifikasi", res.message, "success");
   },
 
   displayError(context, err) {
     console.log(err);
-    swal("Notification", err.message, "error");
+    swal("Notifikasi", err.message, "error");
   },
 
   displayMessage(context, res) {
     console.log(res);
-    swal("Notification", res.message);
+    swal("Notifikasi", res.message);
   }
 }

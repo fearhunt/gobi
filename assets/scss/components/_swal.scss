@@ -1,0 +1,17 @@
+.swal-modal {
+  .swal-text {
+    text-align: center;
+  }
+
+  .swal-button {
+    transition: $gobi-transition;
+
+    &--confirm {
+      background-color: $primary;
+      
+      &:hover {
+        background-color: darken($primary, 5%);
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@
       <b-container>
         <b-row>
           <b-col cols="12">
-            <h2 class="text-primary font-weight-bold">Tantangan Harian</h2>
+            <h2 class="text-primary font-weight-bold">Tantangan Harian <b-link href="/user-journey"><i class="fa fa-history" style="float: right" aria-hidden="true"></i></b-link> </h2>
             <p>Jumpa lagi Danny! Semangat lakukan tantangan hari ini ya!</p>
           </b-col>
           <template v-for="(challenge, index) in challenges">

@@ -11,6 +11,30 @@
     color: $white;
     font-weight: bold;
   }
+  .navbar-name {
+    color: $white;
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+    background-color: $secondary;
+    border-radius: 1rem;
+  }
+  .navbar-level {
+    color: $white;
+    padding: 0.25rem 0.5rem;
+    background-color: $dark-purple;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    margin-top: -0.5rem;
+  }
+  .navbar-points {
+    color: $secondary;
+    font-weight: bold;
+    padding: 0.25rem 0.8rem;
+    background-color: $white;
+    border-radius: 1.25rem;
+    font-size: 1rem;
+    margin-top: -0.5rem;
+  }
 
   .navbar-nav {
     .nav-item {

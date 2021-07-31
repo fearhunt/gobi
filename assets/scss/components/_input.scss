@@ -14,15 +14,17 @@
   .input-group {
     &-prepend {
       .input-group-text {
+        background-color: white;
+        color: $primary;
         border-top-left-radius: $gobi-border-radius;
         border-bottom-left-radius: $gobi-border-radius;
-        width: 3rem;
-        justify-content: center;
       }
     }
 
     &-append {
       .input-group-text {
+        background-color: white;
+        color: $primary;
         border-top-right-radius: $gobi-border-radius;
         border-bottom-right-radius: $gobi-border-radius;
       }

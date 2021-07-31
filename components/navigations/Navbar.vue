@@ -1,5 +1,5 @@
 <template>
-  <b-navbar type="light">
+  <b-navbar variant="primary">
     <b-navbar-brand to="/">
       <h2 class="navbar-brand-title mb-0">Gobi</h2>
     </b-navbar-brand>

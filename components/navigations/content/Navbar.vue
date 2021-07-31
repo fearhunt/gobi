@@ -1,12 +1,12 @@
 <template>
-  <b-navbar type="light" class="justify-content-between">
+  <b-navbar variant="primary" class="justify-content-between">
     <b-button :to="navLink" variant="round" :class="challengePageClass">
       <i class="fa fa-chevron-left" aria-hidden="true"></i>
     </b-button>
-    <h5 class="text-white font-weight-bold">
+    <h5 class="text-white font-weight-bold mb-0">
       {{ pageTitle }}
     </h5>
-    <b-button to="/" disabled aria-hidden="true" style="opacity: 0" />
+    <b-button to="/" disabled aria-hidden="true" variant="round" style="opacity: 0" />
   </b-navbar>
 </template>
 

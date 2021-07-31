@@ -50,6 +50,35 @@
     }
   }
 
+  &.btn-recorder {
+    background-color: $white;
+    padding: 0.45rem;
+    border-radius: 100%;
+    font-size: 1.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+
+    &:hover {
+      transform: scale(1.25);
+    }
+
+    &.active {
+      background-color: $red;
+      color: $white;
+      animation: glow 1.75s cubic-bezier(0.79, 0.03 , 0.22, 1.04) infinite;
+    }
+  }
+
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 $red;
+    }
+
+    100% {
+      box-shadow: 0 0 0.65rem 0.5rem transparent;
+    }
+  }
+
   &.btn-round {
     padding: 0.45rem;
     border-radius: 100%;

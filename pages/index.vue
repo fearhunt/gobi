@@ -4,9 +4,12 @@
       <b-container>
         <b-row>
           <b-col sm="12" md="6" class="mt-auto mb-md-auto">
-            
+            <h1 class="text-title text-white">
+              Halo, <br>
+              namaku Gobi
+            </h1>
           </b-col>
-          <b-col sm="12" md="6" class="my-auto">
+          <b-col sm="12" md="6" class="mt-auto">
             <svg class="gobi-main" viewBox="0 0 547 447" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path class="left-hand" d="M60.7447 52.6837C19.6682 172.26 93.7841 219.592 135.35 239.522L135.35 303.047C119.457 303.047 60.7447 282.991 21.6558 209.627C-36.6139 100.264 38.7394 -7.10473 60.7447 0.368817C78.3489 6.34766 80.3365 19.0527 60.7447 52.6837Z" fill="#B6E8FF"/>
               <path class="right-hand" d="M528.276 339.93C515.9 288.59 451.444 265.714 420.518 260.881L436.159 325.764C440.396 322.792 454.928 322.504 479.161 345.125C509.454 373.401 393.31 402.875 385.37 413.449C377.43 424.024 386.919 473.763 461.771 432.015C530.389 393.745 535.051 368.035 528.276 339.93Z" fill="#B6E8FF"/>
@@ -29,6 +32,11 @@
                 <rect x="98.1821" y="140.837" width="341.337" height="44.569" transform="rotate(-4.13948 98.1821 140.837)" fill="#FD522C"/>
               </g>
             </svg>
+            <div class="d-flex justify-content-center align-items-center" style="height: 125px; width: 100%; background-color: #FFAF96">
+              <b-button size="sm" variant="recorder">
+                <i class="fa fa-microphone" aria-hidden="true"></i>
+              </b-button>
+            </div>
           </b-col>
         </b-row>
       </b-container>
@@ -38,7 +46,7 @@
       <b-container>
         <b-row>
           <b-col>
-            <button id="button">Start listening</button>
+            <!-- <button id="btn-recorder">Start listening</button> -->
             <div id="result"></div>
           </b-col>
         </b-row>
@@ -70,9 +78,9 @@
     },
 
     mounted() {
-      const button = document.getElementById("button");
+      const btnRecorder = document.querySelector(".btn-recorder");
       const result = document.getElementById("result");
-      const main = document.getElementsByTagName("main")[0];
+      // const main = document.getElementsByTagName("main")[0];
 
       let listening = false;
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -82,15 +90,13 @@
         
         var counter = 0;
         const start = () => {
-          main.classList.add("speaking");
+          btnRecorder.classList.add("active");
           recognition.start();
-          button.textContent = "Stop listening";
         };
 
         const stop = () => {
-          main.classList.remove("speaking");
+          btnRecorder.classList.remove("active");
           recognition.stop();
-          button.textContent = "Start listening";
           this.$store.dispatch("gobi/sendAudioRecord", {
             pesan: document.querySelector("#result").innerText,
             counter: counter
@@ -117,14 +123,14 @@
         recognition.interimResults = true;
         recognition.lang="id-ID"
         recognition.addEventListener("result", onResult);
-        button.addEventListener("click", event => {
+        btnRecorder.addEventListener("click", event => {
           listening ? stop() : start();
           listening = !listening;
 
         });
         
       } else {
-        button.remove();
+        btnRecorder.remove();
         const message = document.getElementById("message");
         message.removeAttribute("hidden");
         message.setAttribute("aria-hidden", "false");
@@ -140,6 +146,7 @@
     background-color: $primary;
     height: 100vh;
     margin-top: 0;
+    padding-bottom: 0;
 
     @media (max-width: 768px) {
       min-height: 100vh;
@@ -147,6 +154,14 @@
     
     .container, .row {
       height: 100%;
+    }
+
+    .text-title {
+      font-size: 4rem;
+
+      @media (max-width: 768px) {
+        font-size: 2.5rem;
+      }
     }
   }
 </style>

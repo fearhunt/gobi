@@ -48,6 +48,21 @@ section {
   }
 }
 
+.gobi-col{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 70vh;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+.gobi-speech{
+  padding-left: 4rem !important;
+  @media (max-width: 768px) {
+    padding-left: 2.5rem !important;
+  }
+}
 .gobi-table {
   display: flex;
   justify-content: center;

@@ -8,6 +8,7 @@
               Halo, <br>
               namaku Gobi
             </h1>
+            <div id="result"></div>
           </b-col>
           <b-col sm="12" md="6" class="mt-auto">
             <svg class="gobi-main" viewBox="0 0 547 447" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,54 +42,30 @@
         </b-row>
       </b-container>
     </section>
-
-    <section id="dev">
-      <b-container>
-        <b-row>
-          <b-col>
-            <!-- <button id="btn-recorder">Start listening</button> -->
-            <div id="result"></div>
-          </b-col>
-        </b-row>
-      </b-container>
-    </section>
   </main>
 </template>
 
 <script>
   export default {
     methods: {
-      setNavbarOnScroll() {
-        window.onscroll = () => {
-          if (document.body.scrollTop > 15 || document.documentElement.scrollTop > 15) {
-            document.querySelector(".navbar").classList.remove("transparent");
-          } else {
-            document.querySelector(".navbar").classList.add("transparent");
-          }
-        }
-      },
-    },
 
-    beforeMount() {
-      window.addEventListener("scroll", this.setNavbarOnScroll);
-    },
-
-    beforeDestroy() {
-      window.removeEventListener("scroll", this.setNavbarOnScroll);
     },
 
     mounted() {
       const btnRecorder = document.querySelector(".btn-recorder");
       const result = document.getElementById("result");
-      // const main = document.getElementsByTagName("main")[0];
 
-      let listening = false;
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      let listening = false;
 
       if (typeof SpeechRecognition !== "undefined") {
         const recognition = new SpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = "id-ID";
         
-        var counter = 0;
+        let counter = 0;
+
         const start = () => {
           btnRecorder.classList.add("active");
           recognition.start();
@@ -97,10 +74,12 @@
         const stop = () => {
           btnRecorder.classList.remove("active");
           recognition.stop();
+
           this.$store.dispatch("gobi/sendAudioRecord", {
             pesan: document.querySelector("#result").innerText,
             counter: counter
           })
+
           counter++;
         };
 
@@ -111,26 +90,24 @@
           for (const res of event.results) {
             const text = document.createTextNode(res[0].transcript);
             const p = document.createElement("p");
+
             if (res.isFinal) {
               p.classList.add("final");
             }
+
             p.appendChild(text);
             result.appendChild(p);
           }
         };
 
-        recognition.continuous = true;
-        recognition.interimResults = true;
-        recognition.lang="id-ID"
         recognition.addEventListener("result", onResult);
         btnRecorder.addEventListener("click", event => {
           listening ? stop() : start();
           listening = !listening;
-
         });
-        
       } else {
         btnRecorder.remove();
+
         const message = document.getElementById("message");
         message.removeAttribute("hidden");
         message.setAttribute("aria-hidden", "false");
@@ -144,9 +121,9 @@
 
   #jumbotron {
     background-color: $primary;
-    height: 100vh;
-    margin-top: 0;
+    margin: 0;
     padding-bottom: 0;
+    height: calc(100vh - 5.9rem);
 
     @media (max-width: 768px) {
       min-height: 100vh;

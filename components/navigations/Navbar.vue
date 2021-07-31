@@ -1,5 +1,5 @@
 <template>
-  <b-navbar toggleable="lg" type="light" :class="isHomepage">
+  <b-navbar toggleable="lg" type="light">
     <b-navbar-brand to="/">
       <h2 class="navbar-brand-title mb-0">Gobi</h2>
     </b-navbar-brand>

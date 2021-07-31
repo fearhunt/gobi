@@ -8,6 +8,9 @@
               Halo, <br>
               namaku Gobi
             </h1>
+            <p>
+              
+            </p>
             <div id="result"></div>
           </b-col>
           <b-col sm="12" md="6" class="mt-auto">
@@ -33,7 +36,7 @@
                 <rect x="98.1821" y="140.837" width="341.337" height="44.569" transform="rotate(-4.13948 98.1821 140.837)" fill="#FD522C"/>
               </g>
             </svg>
-            <div class="d-flex justify-content-center align-items-center" style="height: 125px; width: 100%; background-color: #FFAF96">
+            <div class="d-flex justify-content-center align-items-center" style="height: 125px; width: 100%; background-color: #F09E70">
               <b-button size="sm" variant="recorder">
                 <i class="fa fa-microphone" aria-hidden="true"></i>
               </b-button>
@@ -46,7 +49,15 @@
 </template>
 
 <script>
+  import { mapState } from "vuex";
+
   export default {
+    computed: {
+      ...mapState({
+        recorderCounter: state => state.gobi.recorderCounter
+      })
+    },
+
     methods: {
 
     },

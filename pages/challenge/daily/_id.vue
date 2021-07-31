@@ -25,10 +25,8 @@
               </p>
               <b-form @submit.prevent="onSubmit">
                 <b-card bg-variant="soft-purple">
-                  <p class="mb-0">Tunjukkan foto sebagai bukti kenangan</p>
-                  <b-button variant="secondary" class="mt-2 btn-camera">
-                    <i class="fa fa-camera" aria-hidden="true"></i>
-                  </b-button>
+                  <p class="mb-0 mb-3">Tunjukkan foto sebagai bukti kenangan</p>
+                  <b-img :src="require('~/assets/img/camera.png')" fluid class="img-camera cursor-pointer"></b-img>
                 </b-card>
                 <b-button type="submit" variant="primary" class="my-3">Simpan</b-button>
               </b-form>
@@ -105,7 +103,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .btn-camera {
-    font-size: 2rem;
+  .img-camera {
+    width: 6rem;
   }
 </style>

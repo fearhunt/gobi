@@ -67,9 +67,6 @@
           this.isFetched = true;
           setTimeout(() => this.$nuxt.$loading.finish(), 500);
         });
-
-      const page = document.querySelector(".page");
-      console.log(page)
     }
   }
 </script>

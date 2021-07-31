@@ -3,7 +3,7 @@
     <section id="jumbotron">
       <b-container fluid>
         <b-row>
-          <b-col sm="12" md="6" class="mt-auto mb-md-auto px-4">
+          <b-col sm="12" md="6" class="mt-auto mb-md-auto px-4 px-md-5">
             <h1 class="text-gobi text-white">
               {{ gobiResponse }}
             </h1>
@@ -64,70 +64,116 @@
 
     data() {
       return {
-
+        voices: []
       }
     },
 
     methods: {
-      
+      recognizeSpeech() {
+        const btnRecorder = document.querySelector(".btn-recorder");
+        const recordResult = document.getElementById("record-result");
+        
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let listening = false;
+
+        if (typeof SpeechRecognition !== "undefined") {
+          const recognition = new SpeechRecognition();
+          recognition.continuous = true;
+          recognition.interimResults = true;
+          recognition.lang = "id-ID";
+          
+          const start = () => {
+            btnRecorder.classList.add("active");
+            recognition.start();
+          };
+
+          const stop = () => {
+            btnRecorder.classList.remove("active");
+            recognition.stop();
+
+            this.$store.dispatch("gobi/sendAudioRecord", {
+              pesan: document.querySelector("#record-result").innerText
+            }).then(() => {
+              this.speakResponse();
+            });
+          };
+
+          const onResult = event => {
+            recordResult.innerHTML = "";
+
+            for (const res of event.results) {
+              const text = document.createTextNode(res[0].transcript);
+              const p = document.createElement("p");
+              p.classList.add("text-record")
+
+              if (res.isFinal) {
+                p.classList.add("final-record");
+              }
+
+              p.appendChild(text);
+              recordResult.appendChild(p);
+            }
+          };
+
+          recognition.addEventListener("result", onResult);
+          btnRecorder.addEventListener("click", event => {
+            listening ? stop() : start();
+            listening = !listening;
+          });
+        } else {
+          btnRecorder.remove();
+
+          const message = document.getElementById("message");
+          message.removeAttribute("hidden");
+          message.setAttribute("aria-hidden", "false");
+        }
+      },
+
+      populateVoiceList() {
+        this.voices = window.speechSynthesis.getVoices()
+          .sort((a, b) => {
+            const aName = a.name.toUpperCase();
+            const bName = b.name.toUpperCase();
+            
+            if ( aName < bName ) {
+              return -1;
+            } else if ( aName == bName ) {
+              return 0;
+            } else {
+              return +1;
+            }
+          });
+      },
+
+      speakResponse() {
+        if (window.speechSynthesis.speaking) {
+          console.error("speechSynthesis.speaking");
+          return;
+        }
+
+        let utterThis = new SpeechSynthesisUtterance(this.gobiResponse);
+        utterThis.onend = (event) => {
+          console.log("SpeechSynthesisUtterance.onend");
+        }
+
+        utterThis.onerror = (event) => {
+          console.error("SpeechSynthesisUtterance.onerror")
+        }
+
+        utterThis.voice = this.voices[0];
+        utterThis.pitch = 0.7;
+        utterThis.rate = 1;
+
+        window.speechSynthesis.speak(utterThis);
+      }
     },
 
     mounted() {
-      const btnRecorder = document.querySelector(".btn-recorder");
-      const recordResult = document.getElementById("record-result");
-
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      let listening = false;
-
-      if (typeof SpeechRecognition !== "undefined") {
-        const recognition = new SpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = true;
-        recognition.lang = "id-ID";
-        
-        const start = () => {
-          btnRecorder.classList.add("active");
-          recognition.start();
-        };
-
-        const stop = () => {
-          btnRecorder.classList.remove("active");
-          recognition.stop();
-
-          this.$store.dispatch("gobi/sendAudioRecord", {
-            pesan: document.querySelector("#record-result").innerText
-          });
-        };
-
-
-        const onResult = event => {
-          recordResult.innerHTML = "";
-
-          for (const res of event.results) {
-            const text = document.createTextNode(res[0].transcript);
-            const p = document.createElement("p");
-            p.classList.add("text-record")
-
-            if (res.isFinal) {
-              p.classList.add("final-record");
-            }
-
-            p.appendChild(text);
-            recordResult.appendChild(p);
-          }
-        };
-
-        recognition.addEventListener("result", onResult);
-        btnRecorder.addEventListener("click", event => {
-          listening ? stop() : start();
-          listening = !listening;
-        });
-      } else {
-        btnRecorder.remove();
-
-        const message = document.getElementById("message");
-        message.removeAttribute("hidden");
-        message.setAttribute("aria-hidden", "false");
+      this.recognizeSpeech();
+      this.populateVoiceList();
+      
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = this.populateVoiceList;
       }
     }
   }
